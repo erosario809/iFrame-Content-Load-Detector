@@ -8,7 +8,7 @@ window.onload = function (){
 	//construct the iframe
 	var iframe = document.createElement("iframe");
 
-    iframe.src = "https://facebook.com";
+    iframe.src = "https://www.repathahcp.com/?utm_source=medscapeinfosite&utm_medium=medscapeprogram&utm_campaign=medscapecampaign";//https://www.repathahcp.com/?utm_source=medscapeinfosite&utm_medium=medscapeprogram&utm_campaign=medscapecampaign
     iframe.id = "mainIframe";
 
     //creating this delay for all browsers except Firefox
@@ -19,10 +19,15 @@ window.onload = function (){
 
     document.body.appendChild(iframe);
 
+    //this variable switches to true when iframe loads so that if the onload event doesn't fire we can run the secondary check in FF
+   	var isIframeElementLoaded = false;
+
 	//in Firefox the contentDocument.URL will return a string 'about:blank' if no content was loaded but will fail otherwise indicating that it loaded successfully in firefox...for all other browser we'll use a setTimeout to detect if content successfully loaded
 	if(browser == 'Firefox'){
-		
+
 		iframe.onload = function(){
+			isIframeElementLoaded = true;
+
 			try{
 				var check = document.getElementById('mainIframe').contentDocument.URL;
 			}catch(e){
@@ -34,7 +39,32 @@ window.onload = function (){
 				console.log("UNABLE TO LOAD IFRAME CONTENT");
 				alert("whohooo iframe didn't load and i detected it");
 			}
-		};	
+		};
+
+		//if iframe onload event doesn't fire we want to check if at least isIframeElementLoaded still false indicating that onload never fired
+		var checkCount = 0;
+		function checkIfElementLoaded(){
+			//run recursion on this function 3 times...if isIframeElementLoaded still false fire off process
+			checkCount++
+			setTimeout(function(){
+				if(isIframeElementLoaded){
+				//stop recursion no further check
+				}else{
+					//recursion to keep runing this function untill element is loaded
+					if(checkCount < 3){
+						checkIfElementLoaded();
+					}else{
+						//iframe loaded but without content...fire off your process here
+						console.log("UNABLE TO LOAD IFRAME CONTENT");
+						alert("whohooo iframe didn't load and i detected it");
+					}
+				}
+			},1000);			
+		}
+
+		checkIfElementLoaded();
+
+
 		
 	}else{
 
