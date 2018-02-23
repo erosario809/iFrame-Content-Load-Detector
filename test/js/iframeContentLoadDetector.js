@@ -8,7 +8,7 @@ window.onload = function (){
 	//construct the iframe
 	var iframe = document.createElement("iframe");
 
-    iframe.src = "https://www.repathahcp.com/?utm_source=medscapeinfosite&utm_medium=medscapeprogram&utm_campaign=medscapecampaign";//https://www.repathahcp.com/?utm_source=medscapeinfosite&utm_medium=medscapeprogram&utm_campaign=medscapecampaign
+    iframe.src = "https://facebook.com";
     iframe.id = "mainIframe";
 
     //creating this delay for all browsers except Firefox
