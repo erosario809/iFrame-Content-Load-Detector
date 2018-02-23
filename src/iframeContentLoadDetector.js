@@ -22,7 +22,7 @@ window.onload = function (){
     //this variable switches to true when iframe loads so that if the onload event doesn't fire we can run the secondary check in FF
    	var isIframeElementLoaded = false;
 
-   	//Do your process here if loadFailure detected.
+   	//Do your process here if loadFailure detected
    	function loadFailureDetected(){
    		console.log("UNABLE TO LOAD IFRAME CONTENT");
 		alert("whohooo iframe didn't load and i detected it");
