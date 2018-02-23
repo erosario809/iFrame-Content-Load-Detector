@@ -24,3 +24,5 @@ For all other browsers:
 Since the contentDocument.URL can only be accessed in Firefox and contentWindow is useless, we need a different approach for all other browsers. Because an iframe first reads the HTTP headers of the URL, we know that the time it takes to render content in an iframe can help us determine if it loaded successfully or not. If an iframe were to load successfully, the time it would take to fire off its readyState will be longer than if the iframe are denied the content. As soon as the iframe reads that the Cross-Origin and X-frame-Options in the URL's HTTP header denies the content, the iframe will immediately fire off its readyState along with console error messages.
 
 To do this all we have to do is set a variable that will be set to true a specific amount of time after the iframe loads. If the iframe takes longer than the variable being set to true, this indicates that the iframe loaded successfully. If the variable is set to true upon checking for iframe's readyState, this indicates that iframe couldn't load it's content.
+
+*Note: to do this the iframe must be constructed in Javascript rather than your HTML document.
