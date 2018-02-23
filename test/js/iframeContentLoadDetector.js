@@ -33,10 +33,8 @@ window.onload = function (){
 				//iframe loaded but without content...fire off your process here
 				console.log("UNABLE TO LOAD IFRAME CONTENT");
 				alert("whohooo iframe didn't load and i detected it");
-			}else{
-				console.log("iframe loaded successfully");
 			}
-		};		
+		};	
 		
 	}else{
 
@@ -50,7 +48,7 @@ window.onload = function (){
 	            alert("whohooo iframe didn't load and i detected it");
 	        }
 		};
-		
+
 	}
 	
 }
