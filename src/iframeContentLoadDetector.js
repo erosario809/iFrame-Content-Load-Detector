@@ -72,6 +72,8 @@ window.onload = function() {
     } else {
 
         iframe.onload = function() {
+            isIframeElementLoaded = true;
+
             if (timepast) {
                 console.log("iframe loaded successfully");
             } else {
