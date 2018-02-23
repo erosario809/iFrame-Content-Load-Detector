@@ -22,6 +22,12 @@ window.onload = function (){
     //this variable switches to true when iframe loads so that if the onload event doesn't fire we can run the secondary check in FF
    	var isIframeElementLoaded = false;
 
+   	//Do your process here if loadFailure detected
+   	function loadFailureDetected(){
+   		console.log("UNABLE TO LOAD IFRAME CONTENT");
+		alert("whohooo iframe didn't load and i detected it");
+   	}
+
 	//in Firefox the contentDocument.URL will return a string 'about:blank' if no content was loaded but will fail otherwise indicating that it loaded successfully in firefox...for all other browser we'll use a setTimeout to detect if content successfully loaded
 	if(browser == 'Firefox'){
 
@@ -36,8 +42,7 @@ window.onload = function (){
 
 			if(check == 'about:blank'){
 				//iframe loaded but without content...fire off your process here
-				console.log("UNABLE TO LOAD IFRAME CONTENT");
-				alert("whohooo iframe didn't load and i detected it");
+				loadFailureDetected();
 			}
 		};
 
@@ -55,8 +60,7 @@ window.onload = function (){
 						checkIfElementLoaded();
 					}else{
 						//iframe loaded but without content...fire off your process here
-						console.log("UNABLE TO LOAD IFRAME CONTENT");
-						alert("whohooo iframe didn't load and i detected it");
+						loadFailureDetected();
 					}
 				}
 			},1000);			
@@ -74,8 +78,7 @@ window.onload = function (){
 	        }
 	        else {
 	            //unable to load content in iframe...fire off your process here
-	            console.log("UNABLE TO LOAD IFRAME CONTENT");
-	            alert("whohooo iframe didn't load and i detected it");
+	            loadFailureDetected();
 	        }
 		};
 
@@ -93,8 +96,7 @@ window.onload = function (){
 						checkIfElementLoaded();
 					}else{
 						//iframe loaded but without content...fire off your process here
-						console.log("UNABLE TO LOAD IFRAME CONTENT");
-						alert("whohooo iframe didn't load and i detected it");
+						loadFailureDetected();
 					}
 				}
 			},1000);			
