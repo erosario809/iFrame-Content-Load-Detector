@@ -21,26 +21,25 @@ window.onload = function (){
 
 	//in Firefox the contentDocument.URL will return a string 'about:blank' if no content was loaded but will fail otherwise indicating that it loaded successfully in firefox...for all other browser we'll use a setTimeout to detect if content successfully loaded
 	if(browser == 'Firefox'){
-
 		
-			iframe.onload = function(){
-				try{
-					var check = document.getElementById('mainIframe').contentDocument.URL;
-				}catch(e){
-					console.log("iframe loaded successfully");
-				}
+		iframe.onload = function(){
+			try{
+				var check = document.getElementById('mainIframe').contentDocument.URL;
+			}catch(e){
+				console.log("iframe loaded successfully");
+			}
 
-				if(check == 'about:blank'){
-					//iframe loaded but without content...fire off your process here
-					console.log("UNABLE TO LOAD IFRAME CONTENT");
-					alert("whohooo iframe didn't load and i detected it");
-				}else{
-					console.log("iframe loaded successfully");
-				}
-			};
-		
+			if(check == 'about:blank'){
+				//iframe loaded but without content...fire off your process here
+				console.log("UNABLE TO LOAD IFRAME CONTENT");
+				alert("whohooo iframe didn't load and i detected it");
+			}else{
+				console.log("iframe loaded successfully");
+			}
+		};		
 		
 	}else{
+
 		iframe.onload = function(){
 			if(timepast) {
 	            console.log("iframe loaded successfully");
@@ -50,7 +49,8 @@ window.onload = function (){
 	            console.log("UNABLE TO LOAD IFRAME CONTENT");
 	            alert("whohooo iframe didn't load and i detected it");
 	        }
-		}
+		};
+		
 	}
 	
 }
