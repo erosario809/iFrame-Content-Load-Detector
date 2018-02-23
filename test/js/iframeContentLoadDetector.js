@@ -8,7 +8,7 @@ window.onload = function (){
 	//construct the iframe
 	var iframe = document.createElement("iframe");
 
-    iframe.src = "https://prosprit.com";
+    iframe.src = "https://facebook.com";
     iframe.id = "mainIframe";
 
     //creating this delay for all browsers except Firefox
