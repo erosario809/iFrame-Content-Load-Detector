@@ -79,6 +79,27 @@ window.onload = function (){
 	        }
 		};
 
+		//if iframe onload event doesn't fire we want to check if at least isIframeElementLoaded still false indicating that onload never fired
+		var checkCount = 0;
+		function checkIfElementLoaded(){
+			//run recursion on this function 3 times...if isIframeElementLoaded still false fire off process
+			checkCount++
+			setTimeout(function(){
+				if(isIframeElementLoaded){
+				//stop recursion no further check
+				}else{
+					//recursion to keep runing this function untill element is loaded
+					if(checkCount < 3){
+						checkIfElementLoaded();
+					}else{
+						//iframe loaded but without content...fire off your process here
+						console.log("UNABLE TO LOAD IFRAME CONTENT");
+						alert("whohooo iframe didn't load and i detected it");
+					}
+				}
+			},1000);			
+		}
+
 	}
 	
 }
