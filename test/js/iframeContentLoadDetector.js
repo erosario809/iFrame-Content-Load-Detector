@@ -9,16 +9,13 @@ window.onload = function() {
     iframe.src = "https://facebook.com";
     iframe.id = "mainIframe";
 
+    document.body.appendChild(iframe);
+
     //creating this delay for all browsers except Firefox
     var timepast = false;
     setTimeout(function() {
         timepast = true;
-    }, 500);
-
-    document.body.appendChild(iframe);
-
-    //this variable switches to true when iframe loads so that if the onload event doesn't fire we can run the secondary check in FF
-    var isIframeElementLoaded = false;
+    }, 500);    
 
     //Do your process here if loadFailure detected
     function loadFailureDetected() {
@@ -30,7 +27,6 @@ window.onload = function() {
     if (browser == 'Firefox') {
 
         iframe.onload = function() {
-            isIframeElementLoaded = true;
 
             try {
                 var check = document.getElementById('mainIframe').contentDocument.URL;
@@ -44,35 +40,9 @@ window.onload = function() {
             }
         };
 
-        //if iframe onload event doesn't fire we want to check if at least isIframeElementLoaded still false indicating that onload never fired
-        var checkCount = 0;
-
-        function checkIfElementLoaded() {
-            //run recursion on this function 3 times...if isIframeElementLoaded still false fire off process
-            checkCount++
-            setTimeout(function() {
-                if (isIframeElementLoaded) {
-                    //stop recursion no further check
-                } else {
-                    //recursion to keep runing this function untill element is loaded
-                    if (checkCount < 3) {
-                        checkIfElementLoaded();
-                    } else {
-                        //iframe loaded but without content...fire off your process here
-                        loadFailureDetected();
-                    }
-                }
-            }, 1000);
-        }
-
-        checkIfElementLoaded();
-
-
-
     } else {
 
         iframe.onload = function() {
-            isIframeElementLoaded = true;
 
             if (timepast) {
                 console.log("iframe loaded successfully");
@@ -81,27 +51,6 @@ window.onload = function() {
                 loadFailureDetected();
             }
         };
-
-        //if iframe onload event doesn't fire we want to check if at least isIframeElementLoaded still false indicating that onload never fired
-        var checkCount = 0;
-
-        function checkIfElementLoaded() {
-            //run recursion on this function 3 times...if isIframeElementLoaded still false fire off process
-            checkCount++
-            setTimeout(function() {
-                if (isIframeElementLoaded) {
-                    //stop recursion no further check
-                } else {
-                    //recursion to keep runing this function untill element is loaded
-                    if (checkCount < 3) {
-                        checkIfElementLoaded();
-                    } else {
-                        //iframe loaded but without content...fire off your process here
-                        loadFailureDetected();
-                    }
-                }
-            }, 1000);
-        }
 
     }
 
