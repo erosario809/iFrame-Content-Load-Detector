@@ -19,4 +19,4 @@ get the contentDocument.URL after the iframe has loaded. This property will retu
 
 If the iframe loads successfully, contentDocument.URL will return null. Because the result is null, there is nothing you can do except take this as an indicator that the iframe loaded the content successfully.
 
-*Note: to do this the iframe must be constructed in Javascript rather than your HTML document. Also this will only work if the onload event upon loading the iframe. Mix content sites will cause for this event to never fire even after load. You can't detect and event that never fires.
+*Note: to do this the iframe must be constructed in Javascript rather than your HTML document. Also this will only work if the onload event fires upon loading the iframe. Mix content sites will cause for this event to never fire even after load. You can't detect an event that never fires.
