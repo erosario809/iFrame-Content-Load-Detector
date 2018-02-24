@@ -6,16 +6,10 @@ window.onload = function() {
     //construct the iframe
     var iframe = document.createElement("iframe");
 
-    iframe.src = "https://facebook.com";
+    iframe.src = "https://prosprit.com";
     iframe.id = "mainIframe";
 
-    document.body.appendChild(iframe);
-
-    //creating this delay for all browsers except Firefox
-    var timepast = false;
-    setTimeout(function() {
-        timepast = true;
-    }, 1000);    
+    document.body.appendChild(iframe);  
 
     //Do your process here if loadFailure detected
     function loadFailureDetected() {
@@ -40,18 +34,6 @@ window.onload = function() {
             }
         };
 
-    } else {
-
-        iframe.onload = function() {
-
-            if (timepast) {
-                console.log("iframe loaded successfully");
-            } else {
-                //unable to load content in iframe...fire off your process here
-                loadFailureDetected();
-            }
-        };
-
-    }
+    } 
 
 }
