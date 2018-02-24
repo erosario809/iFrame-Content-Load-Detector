@@ -15,7 +15,7 @@ window.onload = function() {
     var timepast = false;
     setTimeout(function() {
         timepast = true;
-    }, 500);    
+    }, 1000);    
 
     //Do your process here if loadFailure detected
     function loadFailureDetected() {
