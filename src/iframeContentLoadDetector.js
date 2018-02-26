@@ -1,15 +1,7 @@
 window.onload = function() {
 
     //get user's browser...the try will be priority to get the contentDocument.URL in firefox and a setTimeout for the other browsers
-    var browser = (navigator.userAgent.match(/Firefox/i)) == "Firefox" ? "Firefox" : (navigator.userAgent.match(/Chrome/i)) == "Chrome" ? "Chrome" : (navigator.userAgent.match(/Safari/i)) == "Safari" ? "Safari" : (navigator.userAgent.match(/NET/i)) == "NET" ? "NET" : "NONE";
-
-    //construct the iframe
-    var iframe = document.createElement("iframe");
-
-    iframe.src = "https://prosprit.com";
-    iframe.id = "mainIframe";
-
-    document.body.appendChild(iframe);  
+    var browser = (navigator.userAgent.match(/Firefox/i)) == "Firefox" ? "Firefox" : (navigator.userAgent.match(/Chrome/i)) == "Chrome" ? "Chrome" : (navigator.userAgent.match(/Safari/i)) == "Safari" ? "Safari" : (navigator.userAgent.match(/NET/i)) == "NET" ? "NET" : "NONE";  
 
     //Do your process here if loadFailure detected
     function loadFailureDetected() {
@@ -20,7 +12,7 @@ window.onload = function() {
     //in Firefox the contentDocument.URL will return a string 'about:blank' if no content was loaded but will fail otherwise indicating that it loaded successfully in firefox...for all other browser we'll use a setTimeout to detect if content successfully loaded
     if (browser == 'Firefox') {
 
-        iframe.onload = function() {
+        if(document.getElementById('mainIframe')){
 
             try {
                 var check = document.getElementById('mainIframe').contentDocument.URL;
